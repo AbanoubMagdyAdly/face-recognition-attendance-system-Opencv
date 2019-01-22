@@ -3,10 +3,10 @@ import os
 import numpy as np
 from PIL import Image
 from flask import Flask, render_template, Response,request,url_for, session, redirect, request, escape, jsonify
-from _mysql_exceptions import IntegrityError
+#from _mysql_exceptions import IntegrityError
 from camera1 import VideoCamera1
 from camera import VideoCamera
-import MySQLdb
+#import MySQLdb
 import time
 import datetime
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
@@ -21,8 +21,8 @@ def seterror(error1):
 def setx(x1):
     global x;
     x=x1;
-conn = MySQLdb.connect(host="localhost",user="root",password="",db="atten")
-cursor = conn.cursor()
+#conn = MySQLdb.connect(host="localhost",user="root",password="",db="atten")
+#cursor = conn.cursor()
 @app.route('/addone/<string:insert>')
 def add(insert):
 	cursor = conn.cursor()
@@ -65,12 +65,12 @@ def check():
 		
 @app.route('/index.html/')
 def index():
-    id = session['id']
+    id = session['id']=1
     if id==session['id']:
-        cursor.execute("SELECT dname FROM doctor WHERE did ='"+id+"'")
-        username = str(cursor.fetchall())
-        name =str(username).replace("'","").replace("(","").replace(")","").replace(",","")
-        return render_template('index.html',result=name)
+        #cursor.execute("SELECT dname FROM doctor WHERE did ='"+id+"'")
+        #username = str(cursor.fetchall())
+        #name =str(username).replace("'","").replace("(","").replace(")","").replace(",","")
+        return render_template('index.html',result="Abanoub")
     else:
         return render_template('login.html')
 @app.route('/live.html/')
@@ -158,12 +158,12 @@ def video_feed1():
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 @app.route('/index1.html/')
 def index1():
-    id = session['id']
+    id = session['id']=1
     if id==session['id']:
-        cursor.execute("SELECT dname FROM doctor WHERE did ='"+id+"'")
-        username = str(cursor.fetchall())
-        name =str(username).replace("'","").replace("(","").replace(")","").replace(",","")
-        return render_template('index1.html',result=name)
+        #cursor.execute("SELECT dname FROM doctor WHERE did ='"+id+"'")
+        #username = str(cursor.fetchall())
+        #name =str(username).replace("'","").replace("(","").replace(")","").replace(",","")
+        return render_template('index1.html',result="Abanoub")
     else:
         return render_template('login.html')
 @app.route('/live1.html/')
